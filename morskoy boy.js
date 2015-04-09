@@ -33,9 +33,23 @@ function showAnswer(event) {
 //определяем длину корабля
 
 var number=4;
-var position=Math.floor(Math.random()*6);
-var ship=[];
-for (var i=0;i<number;i++) {
-ship.push("0"+position);
-position++;
+//определяем расположение корабля по вертикали или горизонтали
+var rasp=Math.floor(Math.random()*2);
+if(rasp===1){
+	var posY=Math.floor(Math.random()*10);
+	var position=Math.floor(Math.random()*7);
+	var ship=[];
+	for (var i=0;i<number;i++) {
+		ship.push(posY.toString()+position);
+		position++;
+	}
+}else{
+	var posX=Math.floor(Math.random()*10);
+	var position=Math.floor(Math.random()*7);
+	var ship=[];
+	for (var i=0;i<number;i++) {
+		ship.push(position+posX.toString());
+		position++;
+	}
 }
+//определяем координаты корабля
