@@ -144,6 +144,6 @@ function correctLocation(locShip){
 //функция определения вертикального или горизонтального расположения, 
 //возвращает истину при горизонтальном расположении
 
-function horisontShip(){
+function horisontShip(location){
 	
 }
