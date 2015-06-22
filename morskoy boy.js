@@ -1,7 +1,8 @@
 
 //определяем по какому елементу был клик
 window.onload=function () {
-var columns=document.getElementsByTagName("td");
+var table=document.getElementById('computer');
+var columns=table.getElementsByTagName("td");
 var num=columns.length;
 for (var i=0;i<num;i++) {
 columns[i].onclick=showAnswer;
@@ -130,7 +131,6 @@ function correctLocation(locShip){
 	for(var index in locShip){
 		for(var k in busyArea){
 			if(locShip[index]===busyArea[k]){
-				console.log(locShip[index]+" - "+busyArea[k]);
 				return false;
 			}
 			
@@ -143,6 +143,12 @@ function correctLocation(locShip){
 
 //функция определения вертикального или горизонтального расположения, 
 //возвращает истину при горизонтальном расположении
+
+var userShips=[] //хранит расположение всех кораблей пользователя
+
+function showInstruction(){
+	
+}
 
 function horisontShip(location){
 	
