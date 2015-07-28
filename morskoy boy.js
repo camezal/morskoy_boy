@@ -7,6 +7,16 @@ var num=columns.length;
 for (var i=0;i<num;i++) {
 columns[i].onclick=showAnswer;
 }
+var tableUser=document.getElementById('user');
+var columnsUser=tableUser.getElementsByTagName("td");
+var numUser=columnsUser.length;
+for(var k=0;k<numUser;k++){
+	columnsUser[k].onmouseover=raspUserShip;
+	columnsUser[k].onmouseout=clearClass;
+	columnsUser[k].onclick=enterUserShip;
+	
+}
+document.onkeypress=turnLocation;
 };
 
 var busyArea=[];
@@ -144,12 +154,78 @@ function correctLocation(locShip){
 //функция определения вертикального или горизонтального расположения, 
 //возвращает истину при горизонтальном расположении
 
-var userShips=[] //хранит расположение всех кораблей пользователя
-
+var userShips=[]; //хранит расположение всех кораблей пользователя
+var numUser=4;
+var userShip=[];
+var key=0;// определяет горизонтальное или вертикальное расположение корабля
 function showInstruction(){
 	
 }
 
-function horisontShip(location){
+function raspUserShip(event){
+	var id=event.target.id;
+	var num=numUser;
+	userShip=createUserShip(id,num);
+	createClass(userShip,"green");
+}
+
+//функция определения типа корабля 
+function determineNum(){
+	var index=userShips.length;
+	if(index===undefined){
+		index=0;
+	}
+	var number=[4,3,3,2,2,2,1,1,1,1];
+	var num=number[index];
+	return num;
+}
+
+//определение координат корабля
+
+function createUserShip(id,number){
+	var horiz=parseInt(id.charAt(1));
+	var vert=parseInt(id.charAt(2));
+	var userShip=[];
+	for(var i=0;i<number;i++){
+		if((vert+number)<11){
+			coordinats="1"+horiz.toString()+(vert+i).toString();
+			userShip.push(coordinats);
+		}
+	}
+	console.log(userShip);
+	return userShip;
+}
+
+//создание класса для корабля
+function createClass(ship,className){
+	for (index in ship){
+		coordinats=document.getElementById(ship[index]);
+		coordinats.setAttribute("class",className);
+	}
+}
+
+//ввод координат корабля
+function enterUserShip(){
+	var userShipLocation=userShip;
+	userShips.push(userShipLocation);
+	createClass(userShipLocation,"blue");
+}
+
+//очищаем класс при перемещении курсора
+function clearClass(event){
+	column=event.target;
+	if(column.className=="green"){
+		var userShipLocation=userShip;
+		createClass(userShipLocation,"white");
+
+	}
+}
+
+function turnLocation(event){
+	if(event.keyCode==118){
+		key=1;
+	}else if(event.keyCode==103){
+		key=0;
+	}
 	
 }
